@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Delivery</title>
+  <style>
+    body {
+      background-color: #f3f3f3;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #chatbox {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+      max-width: 320px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: left;
+      height: 400px;
+      overflow-y: scroll;
+    }
+
+    .message {
+      margin-bottom: 10px;
+    }
+
+    .user-message {
+      background-color: #e2e9ed;
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    .bot-message {
+      background-color: #d3f2db;
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    .input-container {
+      margin-top: 20px;
+      display: flex;
+    }
+
+    input[type="text"] {
+      flex-grow: 1;
+      padding: 10px;
+      margin-right: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #4caf50;
+      border: none;
+      color: #ffffff;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    function sendMessage() {
+      var userInput = document.getElementById("userInput");
+      var userMessage = userInput.value;
+
+      if (userMessage.trim() !== "") {
+        var chatbox = document.getElementById("chatbox");
+        var userDiv = document.createElement("div");
+        userDiv.className = "message";
+        userDiv.innerHTML = '<div class="user-message">' + userMessage + "</div>";
+        chatbox.appendChild(userDiv);
+        userInput.value = "";
+
+        // Simulate bot response after a short delay
+        setTimeout(function () {
+          var botDiv = document.createElement("div");
+          botDiv.className = "message";
+            if (userMessage.toLowerCase().includes("no")) {
+              botDiv.innerHTML = '<div class="bot-message">Please provide me with the correct address.</div>';            
+            } else if (userMessage.toLowerCase().includes("yes")) {
+              botDiv.innerHTML = '<div class="bot-message">Thank you! I will be at your address at 16:20.</div>';
+            } else {
+              botDiv.innerHTML = '<div class="bot-message">I am sorry, I didnt understand. Is your address XYZ? (yes/no)</div>';
+            }
+          if (userMessage.toLowerCase().includes("habadaba")) {
+              botDiv.innerHTML = '<div class="bot-message">Thank you! I will be at '+ userMessage +' at 16:20.</div>';
+          }         
+          chatbox.appendChild(botDiv);
+          chatbox.scrollTop = chatbox.scrollHeight;
+        }, 500);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var sendButton = document.getElementById("sendButton");
+      sendButton.addEventListener("click", sendMessage);
+
+      var userInput = document.getElementById("userInput");
+      userInput.addEventListener("keydown", function (event) {
+        if (event.keyCode === 13) {
+          sendMessage();
+        }
+      });
+
+      // Bot initiates conversation
+      setTimeout(function () {
+        var chatbox = document.getElementById("chatbox");
+        var botDiv = document.createElement("div");
+        botDiv.className = "message";
+        botDiv.dataset.initialized = true;
+        botDiv.innerHTML = '<div class="bot-message">Hi, I am underway to your location. Is your address Habadaba Street 419? (yes/no)</div>';
+        chatbox.appendChild(botDiv);
+      }, 1000);
+    });
+  </script>
+</head>
+<body>
+  <h1>Address Chatbot</h1>
+  <div id="chatbox"></div>
+  <div class="input-container">
+    <input type="text" id="userInput" placeholder="Type your message">
+    <button id="sendButton">Send</button>
+  </div>
+</body>
+</html>
+
