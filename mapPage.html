@@ -1,70 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css">
   <style>
-    #map {
-      height: 800px;
-      width: 100%;
+    body {
+      background: linear-gradient(to bottom, #001c3e, #000000);
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .logo {
+      width: 100px;
+    }
+
+    .menu {
+      display: flex;
+    }
+
+    .menu a {
+      margin-left: 20px;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .content {
+      text-align: center;
+      margin-top: 200px;
     }
   </style>
 </head>
 <body>
-  <h1>Route Map</h1>
-  <div id="map"></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
-  <script>
-    function initMap() {
-      var startingPoint = [25.286106, 51.534817];
-      var map = L.map('map').setView(startingPoint, 12);
-
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-      }).addTo(map);
-
-      // Replace 'YOUR_JSON_ARRAY' with your actual JSON array of coordinates
-      var coordinates = [
-  { "latitude": 37.7749, "longitude": -122.4194 },
-  { "latitude": 34.0522, "longitude": -118.2437 },
-  { "latitude": 51.5074, "longitude": -0.1278 },
-  { "latitude": 48.8566, "longitude": 2.3522 }
-];
-
-      var routeCoordinates = [];
-      for (var i = 0; i < coordinates.length; i++) {
-        routeCoordinates.push([coordinates[i].latitude, coordinates[i].longitude]);
-      }
-
-      var routePath = L.polyline(routeCoordinates, {
-        color: 'red',
-        weight: 2,
-        opacity: 1
-      }).addTo(map);
-
-      var coordinates2 = [
-  { "latitude": 40.712776, "longitude": -74.005974 },
-  { "latitude": 86.5074, "longitude": -0.1278 },
-  { "latitude": -33.865143, "longitude": 151.209900 },
-  { "latitude": 55.7558, "longitude": 72.6176 }
-];
-
-      var routeCoordinates2 = [];
-      for (var i = 0; i < coordinates2.length; i++) {
-        routeCoordinates2.push([coordinates2[i].latitude, coordinates2[i].longitude]);
-      }
-
-      var routePath2 = L.polyline(routeCoordinates2, {
-        color: 'blue',
-        weight: 2,
-        opacity: 1
-      }).addTo(map);
-    }
-  </script>
-
-  <script>
-    // Wait for the DOM to load before initializing the map
-    document.addEventListener('DOMContentLoaded', initMap);
-  </script>
+  <div class="header">
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+    <div class="menu">
+        <a href="mainpage.html">Home</a>
+        <a href="chatbot.html">Chat</a>
+        <a href="mapPage.html">Routes</a>
+        <a href="PowerBI.html">Statistics</a>
+    </div>
+  </div>
+  <div class="content">
+    <div>
+      Actual Data
+      <iframe width="600" height="373.5" src="output_actual_data.html"></iframe>
+      Generated Data
+      <iframe width="600" height="373.5" src="output_chatgptData.html"></iframe>
+    </div>
+  </div>
 </body>
 </html>
+

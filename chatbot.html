@@ -5,11 +5,11 @@
   <title>Your Delivery</title>
   <style>
     body {
-      background-color: #f3f3f3;
+      background: linear-gradient(to bottom, #001c3e, #000000);
       font-family: Arial, sans-serif;
       text-align: center;
       margin: 0;
-      padding: 20px;
+      padding:0px;
     }
 
     #chatbox {
@@ -67,6 +67,31 @@
       border-radius: 4px;
       cursor: pointer;
     }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .logo {
+      width: 100px;
+    }
+
+    .menu {
+      display: flex;
+    }
+
+    .menu a {
+      margin-left: 20px;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .content {
+      text-align: center;
+      margin-top: 200px;
+    }
   </style>
   <script>
     function sendMessage() {
@@ -90,9 +115,9 @@
             } else if (userMessage.toLowerCase().includes("yes")) {
               botDiv.innerHTML = '<div class="bot-message">Thank you! I will be at your address at 16:20.</div>';
             } else {
-              botDiv.innerHTML = '<div class="bot-message">I am sorry, I didnt understand. Is your address XYZ? (yes/no)</div>';
+              botDiv.innerHTML = '<div class="bot-message">I am sorry, I didnt understand. Is your address ' + userMessage + '? (yes/no)</div>';
             }
-          if (userMessage.toLowerCase().includes("habadaba")) {
+          if (userMessage.toLowerCase().includes("street")) {
               botDiv.innerHTML = '<div class="bot-message">Thank you! I will be at '+ userMessage +' at 16:20.</div>';
           }         
           chatbox.appendChild(botDiv);
@@ -125,6 +150,17 @@
   </script>
 </head>
 <body>
+  <div class="header">
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+    <div class="menu">
+        <a href="mainpage.html">Home</a>
+        <a href="chatbot.html">Chat</a>
+        <a href="mapPage.html">Routes</a>
+        <a href="PowerBI.html">Statistics</a>
+    </div>
+  </div>
   <h1>Address Chatbot</h1>
   <div id="chatbox"></div>
   <div class="input-container">
